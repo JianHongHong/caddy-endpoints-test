@@ -1,0 +1,11 @@
+http://<ADD_IN_DOMAIN_NAME> {
+	reverse_proxy 127.0.0.1:8080
+
+    route /api/* {
+        reverse_proxy 127.0.0.1:8081
+    }
+
+    route /admin/* {
+        reverse_proxy 127.0.0.1:8082
+    }
+}

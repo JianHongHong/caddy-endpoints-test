@@ -1,0 +1,22 @@
+services:
+  caddy:
+    image: caddy:latest
+    network_mode: host
+    container_name: caddy_server
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - helloworld
+
+  helloworld:
+    image: hashicorp/http-echo:latest
+    container_name: helloworld_service
+    command: ["-text=Hello, World!"]
+    ports:
+      - "8080:5678"
+
+volumes:
+  caddy_data:
+  caddy_config:
